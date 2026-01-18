@@ -1,31 +1,58 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* ベースカラー */
-  --color-base: #f0ffff;
-  --color-base-dark: #e0f7fa;
+  /* SMBCグリーンベースのカラーパレット */
 
-  /* アクセントカラー */
-  --color-primary: #0ea5e9;
-  --color-primary-dark: #0284c7;
-  --color-primary-light: #7dd3fc;
+  /* ベースカラー */
+  --color-base: #f8faf8;
+  --color-base-dark: #e8f5e9;
+
+  /* プライマリカラー - SMBCフレッシュグリーン */
+  --color-primary: #6EB92B;
+  --color-primary-dark: #5aa321;
+  --color-primary-light: #a5d67a;
+
+  /* セカンダリカラー - SMBCトラッドグリーン */
+  --color-secondary: #1a5c38;
+  --color-secondary-dark: #0d4a2a;
+  --color-secondary-light: #2d7a4e;
+
+  /* アクセントカラー - SMBCブルー */
+  --color-accent: #036EB8;
+  --color-accent-dark: #025a96;
+  --color-accent-light: #4a9fd4;
 
   /* テキスト */
-  --color-text: #000000;
-  --color-text-muted: #000000;
+  --color-text: #1a1a1a;
+  --color-text-muted: #5a5a5a;
+  --color-text-light: #8a8a8a;
 
   /* ステータス */
   --color-success: #22c55e;
   --color-success-bg: #f0fdf4;
   --color-warning: #f59e0b;
+  --color-warning-bg: #fffbeb;
   --color-error: #ef4444;
+  --color-error-bg: #fef2f2;
 
   /* ボーダー */
-  --color-border: #e5e7eb;
+  --color-border: #e0e0e0;
+  --color-border-light: #f0f0f0;
 
   /* 背景 */
   --color-background: #ffffff;
   --color-foreground: #1f2937;
+
+  /* グラデーション */
+  --gradient-primary: linear-gradient(135deg, #6EB92B 0%, #1a5c38 100%);
+  --gradient-accent: linear-gradient(135deg, #036EB8 0%, #1a5c38 100%);
+  --gradient-hero: linear-gradient(180deg, #f8faf8 0%, #e8f5e9 100%);
+
+  /* シャドウ */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 
   /* フォント */
   --font-sans: 'Noto Sans JP', sans-serif;
@@ -104,11 +131,44 @@
   .input:focus {
     outline: none;
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+    box-shadow: 0 0 0 3px rgba(110, 185, 43, 0.15);
   }
 
   .input::placeholder {
-    color: var(--color-text-muted);
+    color: var(--color-text-light);
+  }
+
+  /* グラデーションボタン */
+  .btn-gradient {
+    background: var(--gradient-primary);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+  }
+
+  .btn-gradient:hover {
+    filter: brightness(1.05);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* カード強化 */
+  .card-hover {
+    transition: all 0.3s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
   }
 
   /* スクロールバー非表示 */

@@ -67,21 +67,34 @@ export default function HomePage() {
   return (
     <main className="min-h-screen">
       {/* ヒーローセクション */}
-      <section className="py-16 px-4 sm:py-24">
-        <div className="max-w-2xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-[var(--color-text)] mb-4">
+      <section className="py-20 px-4 sm:py-28 relative overflow-hidden">
+        {/* 背景装飾 */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-base)] to-[var(--color-base-dark)]" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--color-primary)]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-[var(--color-secondary)]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+
+        <div className="max-w-2xl mx-auto text-center relative z-10">
+          {/* ロゴエリア */}
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] shadow-lg mb-6">
+            <Calculator className="w-10 h-10 text-white" />
+          </div>
+
+          <h1 className="text-4xl sm:text-5xl font-bold text-[var(--color-text)] mb-3">
             和利缶
           </h1>
-          <p className="text-xl sm:text-2xl text-[var(--color-primary)] font-medium mb-6">
+          <p className="text-xl sm:text-2xl font-semibold mb-6 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] bg-clip-text text-transparent">
             かんたん割り勘計算
           </p>
-          <p className="text-base sm:text-lg text-[var(--color-text-muted)] mb-8 leading-relaxed">
+          <p className="text-base sm:text-lg text-[var(--color-text-muted)] mb-10 leading-relaxed max-w-md mx-auto">
             旅行やグループイベントの割り勘計算をシンプルに解決。
             <br />
             会員登録不要・無料ですぐに使えます。
           </p>
           <Link href="/create">
-            <Button size="lg" className="text-lg px-8 py-4">
+            <Button
+              size="lg"
+              className="text-lg px-10 py-5 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)]"
+            >
               グループを作成する
             </Button>
           </Link>
@@ -89,22 +102,29 @@ export default function HomePage() {
       </section>
 
       {/* 特徴セクション */}
-      <section className="py-12 px-4 bg-white/50">
+      <section className="py-16 px-4 bg-white">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold text-center text-[var(--color-text)] mb-8">
-            主な機能
-          </h2>
-          <div className="grid grid-cols-2 gap-4">
-            {features.map((feature) => (
+          <div className="text-center mb-10">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-medium mb-3">
+              Features
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--color-text)]">
+              主な機能
+            </h2>
+          </div>
+          <div className="grid grid-cols-2 gap-5">
+            {features.map((feature, index) => (
               <div
                 key={feature.title}
-                className="bg-white rounded-xl p-5 border border-[var(--color-border)] shadow-sm"
+                className="group bg-white rounded-2xl p-6 border border-[var(--color-border)] shadow-sm hover:shadow-lg hover:border-[var(--color-primary)]/30 transition-all duration-300"
               >
-                <feature.icon className="w-8 h-8 text-[var(--color-primary)] mb-3" />
-                <h3 className="font-semibold text-[var(--color-text)] mb-1">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-secondary)]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <feature.icon className="w-6 h-6 text-[var(--color-primary)]" />
+                </div>
+                <h3 className="font-bold text-[var(--color-text)] mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-[var(--color-text-muted)]">
+                <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
                   {feature.description}
                 </p>
               </div>
@@ -114,19 +134,26 @@ export default function HomePage() {
       </section>
 
       {/* 利用シーンセクション */}
-      <section className="py-12 px-4">
+      <section className="py-16 px-4 bg-gradient-to-br from-[var(--color-base)] to-[var(--color-base-dark)]">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold text-center text-[var(--color-text)] mb-8">
-            こんなシーンで活躍
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="text-center mb-10">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--color-secondary)]/10 text-[var(--color-secondary)] text-sm font-medium mb-3">
+              Use Cases
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--color-text)]">
+              こんなシーンで活躍
+            </h2>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {useCases.map((useCase) => (
               <div
                 key={useCase.label}
-                className="bg-white rounded-lg p-4 border border-[var(--color-border)] text-center hover:border-[var(--color-primary)]/50 transition-colors"
+                className="group bg-white rounded-xl p-5 border border-[var(--color-border)] text-center hover:border-[var(--color-primary)] hover:shadow-md transition-all duration-300 cursor-pointer"
               >
-                <useCase.icon className="w-6 h-6 text-[var(--color-primary)] mx-auto mb-2" />
-                <p className="font-medium text-sm text-[var(--color-text)]">
+                <div className="w-10 h-10 rounded-lg bg-[var(--color-primary)]/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-[var(--color-primary)] transition-colors duration-300">
+                  <useCase.icon className="w-5 h-5 text-[var(--color-primary)] group-hover:text-white transition-colors duration-300" />
+                </div>
+                <p className="font-semibold text-sm text-[var(--color-text)]">
                   {useCase.label}
                 </p>
               </div>
@@ -136,47 +163,55 @@ export default function HomePage() {
       </section>
 
       {/* 使い方セクション */}
-      <section className="py-12 px-4 bg-white/50">
+      <section className="py-16 px-4 bg-white">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold text-center text-[var(--color-text)] mb-8">
-            使い方
-          </h2>
-          <div className="space-y-4">
-            <div className="flex items-start gap-4 bg-white rounded-xl p-5 border border-[var(--color-border)]">
-              <div className="flex-shrink-0 w-8 h-8 bg-[var(--color-primary)] rounded-full flex items-center justify-center text-white font-bold">
+          <div className="text-center mb-10">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--color-accent)]/10 text-[var(--color-accent)] text-sm font-medium mb-3">
+              How to Use
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--color-text)]">
+              使い方
+            </h2>
+          </div>
+          <div className="space-y-5 relative">
+            {/* 縦線 */}
+            <div className="absolute left-6 top-12 bottom-12 w-0.5 bg-gradient-to-b from-[var(--color-primary)] via-[var(--color-primary)] to-[var(--color-secondary)] hidden sm:block" />
+
+            <div className="flex items-start gap-5 bg-white rounded-2xl p-6 border border-[var(--color-border)] shadow-sm hover:shadow-md transition-shadow duration-300">
+              <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary-dark)] rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-md">
                 1
               </div>
-              <div>
-                <h3 className="font-semibold text-[var(--color-text)] mb-1">
+              <div className="pt-1">
+                <h3 className="font-bold text-lg text-[var(--color-text)] mb-2">
                   グループを作成
                 </h3>
-                <p className="text-sm text-[var(--color-text-muted)]">
+                <p className="text-[var(--color-text-muted)] leading-relaxed">
                   グループ名とメンバー名を入力してグループを作成します
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-4 bg-white rounded-xl p-5 border border-[var(--color-border)]">
-              <div className="flex-shrink-0 w-8 h-8 bg-[var(--color-primary)] rounded-full flex items-center justify-center text-white font-bold">
+            <div className="flex items-start gap-5 bg-white rounded-2xl p-6 border border-[var(--color-border)] shadow-sm hover:shadow-md transition-shadow duration-300">
+              <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-md">
                 2
               </div>
-              <div>
-                <h3 className="font-semibold text-[var(--color-text)] mb-1">
+              <div className="pt-1">
+                <h3 className="font-bold text-lg text-[var(--color-text)] mb-2">
                   立て替えを記録
                 </h3>
-                <p className="text-sm text-[var(--color-text-muted)]">
+                <p className="text-[var(--color-text-muted)] leading-relaxed">
                   誰が、誰の分を、いくら払ったかを入力していきます
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-4 bg-white rounded-xl p-5 border border-[var(--color-border)]">
-              <div className="flex-shrink-0 w-8 h-8 bg-[var(--color-primary)] rounded-full flex items-center justify-center text-white font-bold">
+            <div className="flex items-start gap-5 bg-white rounded-2xl p-6 border border-[var(--color-border)] shadow-sm hover:shadow-md transition-shadow duration-300">
+              <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[var(--color-secondary)] to-[var(--color-secondary-dark)] rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-md">
                 3
               </div>
-              <div>
-                <h3 className="font-semibold text-[var(--color-text)] mb-1">
+              <div className="pt-1">
+                <h3 className="font-bold text-lg text-[var(--color-text)] mb-2">
                   清算方法を確認
                 </h3>
-                <p className="text-sm text-[var(--color-text-muted)]">
+                <p className="text-[var(--color-text-muted)] leading-relaxed">
                   誰が誰にいくら払えばいいか、自動で計算されます
                 </p>
               </div>
@@ -186,16 +221,24 @@ export default function HomePage() {
       </section>
 
       {/* CTAセクション */}
-      <section className="py-16 px-4">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-2xl font-bold text-[var(--color-text)] mb-4">
+      <section className="py-20 px-4 relative overflow-hidden">
+        {/* 背景グラデーション */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)] via-[var(--color-primary-dark)] to-[var(--color-secondary)]" />
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItSDI0di0yaDEyek0zNiAyNHYySDI0di0yaDEyeiIvPjwvZz48L2c+PC9zdmc+')] opacity-30" />
+
+        <div className="max-w-2xl mx-auto text-center relative z-10">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
             さっそく使ってみる
           </h2>
-          <p className="text-[var(--color-text-muted)] mb-6">
+          <p className="text-white/80 mb-8 text-lg">
             会員登録不要・完全無料でご利用いただけます
           </p>
           <Link href="/create">
-            <Button size="lg" className="text-lg px-8 py-4">
+            <Button
+              size="lg"
+              variant="secondary"
+              className="text-lg px-10 py-5 bg-white text-[var(--color-primary)] hover:bg-white/90 shadow-xl hover:shadow-2xl transition-all duration-300 font-bold"
+            >
               グループを作成する
             </Button>
           </Link>
@@ -203,10 +246,16 @@ export default function HomePage() {
       </section>
 
       {/* フッター */}
-      <footer className="py-8 px-4 border-t border-[var(--color-border)] bg-white/50">
+      <footer className="py-10 px-4 bg-[var(--color-secondary)]">
         <div className="max-w-2xl mx-auto text-center">
-          <p className="text-sm text-[var(--color-text-muted)]">
-            和利缶（ワリカン） - 無料の割り勘計算サービス
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+              <Calculator className="w-4 h-4 text-white" />
+            </div>
+            <span className="text-white font-bold text-lg">和利缶</span>
+          </div>
+          <p className="text-white/60 text-sm">
+            無料の割り勘計算サービス
           </p>
         </div>
       </footer>
