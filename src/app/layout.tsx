@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Noto_Sans_JP } from "next/font/google";
+import { Noto_Sans_JP, Zen_Kaku_Gothic_Antique, Shippori_Mincho } from "next/font/google";
 import { Providers } from "@/components/Providers";
 import "./globals.css";
 
@@ -7,6 +7,21 @@ const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   display: "swap",
+  variable: "--font-noto-sans",
+});
+
+const zenKaku = Zen_Kaku_Gothic_Antique({
+  subsets: ["latin"],
+  weight: ["400", "500", "700", "900"],
+  display: "swap",
+  variable: "--font-zen-kaku",
+});
+
+const shipporiMincho = Shippori_Mincho({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-shippori",
 });
 
 export const metadata: Metadata = {
@@ -47,7 +62,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
-      <body className={`${notoSansJP.className} antialiased`}>
+      <body className={`${notoSansJP.variable} ${zenKaku.variable} ${shipporiMincho.variable} antialiased`}>
         <Providers>{children}</Providers>
         <script
           dangerouslySetInnerHTML={{
